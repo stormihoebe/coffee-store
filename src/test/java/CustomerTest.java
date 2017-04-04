@@ -14,4 +14,9 @@ public class CustomerTest {
   @Rule
   public DatabaseRule databse = new DatabaseRule();
 
+  @Test
+  public void customer_instantiatesCorrectly_true(){
+    Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
+    assertEquals(true, testCustomer instanceof Customer);
+  }
 }
