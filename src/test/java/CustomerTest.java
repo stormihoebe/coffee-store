@@ -47,17 +47,27 @@ public class CustomerTest {
 
   @Test
   public void save_assignsIdToObject() {
-    Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");    testCustomer.save();
+    Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
+    testCustomer.save();
     Customer savedCustomer = Customer.all().get(0);
     assertEquals(testCustomer.getId(), savedCustomer.getId());
 }
 
   @Test
-  public void all_returnsAllInstancesOfCustomer_true() {
-    Customer firstCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
-    firstCustomer.save();
-    Customer secondCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
-    secondCustomer.save();
+  public void purchase_createsANewPuchase_true() {
+    Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
+    testCustomer.save();
+    testCustomer.purchase(2);
+    assertTrue(Purchase.all().size() > 0 );
+  }
+
+  @Test
+  public void getPurchases_listsAllPurchasesByCustomer_true() {
+    Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
+    testCustomer.save();
+    testCustomer.purchase(2);
+    testCustomer.purchase(1);
+    assertEquals(testCustomer.getPurchases().size(), 2);
   }
 
 }

@@ -62,4 +62,25 @@ public class Customer {
     Purchase newPurchase = new Purchase( this.getId(), product_id);
     newPurchase.save();
   }
+
+  public List<Purchase> getPurchases() {
+    try(Connection con = DB.sql2o.open()){
+          String joinQuery = "SELECT product_id FROM purchases WHERE customer_id = :customer_id";
+          List<Integer> productIds = con.createQuery(joinQuery)
+            .addParameter("customer_id", this.getId())
+            .executeAndFetch(Integer.class);
+
+          List<Purchase> purchases = new ArrayList<Purchase>();
+
+          for (Integer productId : productIds) {
+            String purchaseQuery = "SELECT * FROM purchases WHERE id = :productId";
+            Purchase purchase = con.createQuery(purchaseQuery)
+              .addParameter("productId", productId)
+              .executeAndFetchFirst(Purchase.class);
+            purchases.add(purchase);
+          }
+          return purchases;
+        }
+
+  }
 }
