@@ -19,29 +19,41 @@ public class BeanProductTest {
   }
 
   @Test
-  public void beanProduct_instantiateswithName_true(){
+  public void getName_instantiateswithName_true(){
     BeanProduct testBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
     assertEquals("Spring Fling", testBeanProduct.getName());
   }
 
   @Test
-  public void beanProduct_instantiateswithPrice_true(){
+  public void getPrice_instantiateswithPrice_true(){
     BeanProduct testBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
     final float DELTA = 1;
     assertEquals(14, testBeanProduct.getPrice(), DELTA);
   }
 
   @Test
-  public void beanProduct_instantiateswithOrigin_true(){
+  public void getOrigin_instantiateswithOrigin_true(){
     BeanProduct testBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
     assertEquals("Mexico", testBeanProduct.getOrigin());
   }
 
   @Test
-  public void beanProduct_instantiateswithRoast_true(){
+  public void getRoast_instantiateswithRoast_true(){
     BeanProduct testBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
     assertEquals("City Roast", testBeanProduct.getRoast());
   }
 
+  @Test
+  public void getId_beanProductInstantiatesWithId_int() {
+    BeanProduct testBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
+    testBeanProduct.save();
+    assertTrue(0 < testBeanProduct.getId());
+  }
+
+  @Test public void save_successfullyAddBeanProductToDatabase_list() {
+    BeanProduct testBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
+    testBeanProduct.save();
+    assertTrue(BeanProduct.all().get(0).equals(testBeanProduct));
+  }
 
 }
