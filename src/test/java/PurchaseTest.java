@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 
 public class PurchaseTest {
   @Rule
@@ -34,5 +35,14 @@ public class PurchaseTest {
     Purchase testPurchase = new Purchase(1, 2);
     testPurchase.save();
     assertTrue(0<testPurchase.getId());
+  }
+
+  @Test
+  public void save_recordsTimeOfPurchaseInDatabase() {
+    Purchase testPurchase = new Purchase(1, 2);
+    testPurchase.save();
+    Timestamp savedTime = Purchase.find(testPurchase.getId()).getPurchaseTime();
+    Timestamp rightNow = new Timestamp(new Date().getTime());
+    assertEquals(rightNow.getDay(), savedTime.getDay());
   }
 }

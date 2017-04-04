@@ -29,7 +29,7 @@ public class Purchase {
     return product_id;
   }
 
-  public Timestamp getTime(){
+  public Timestamp getPurchaseTime(){
     return time;
   }
 
@@ -58,6 +58,16 @@ public class Purchase {
     String sql = "SELECT * FROM communities";
     try(Connection con = DB.sql2o.open()){
       return con.createQuery(sql).executeAndFetch(Purchase.class);
+    }
+  }
+
+  public static Purchase find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM purchases where id=:id";
+      Purchase purchase = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Purchase.class);
+      return purchase;
     }
   }
 
