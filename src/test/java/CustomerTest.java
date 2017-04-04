@@ -30,4 +30,11 @@ public class CustomerTest {
     Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
     assertEquals("JoyJim@gmail.com", testCustomer.getEmail());
   }
+
+  @Test
+  public void equals_returnsTrueIfNameAndEmailAreSame_true() {
+    Customer testCustomer = new Customer("Henry", "henry@henry.com");
+    Customer anotherCustomer = new Customer("Henry", "henry@henry.com");
+    assertTrue(testCustomer.equals(anotherCustomer));
+  }
 }
