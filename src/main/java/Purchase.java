@@ -55,7 +55,7 @@ public class Purchase {
     }
 
   public static List<Purchase> all() {
-    String sql = "SELECT * FROM communities";
+    String sql = "SELECT * FROM purchases";
     try(Connection con = DB.sql2o.open()){
       return con.createQuery(sql).executeAndFetch(Purchase.class);
     }
@@ -70,8 +70,5 @@ public class Purchase {
       return purchase;
     }
   }
-
-
-
 
 }

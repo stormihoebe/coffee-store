@@ -45,4 +45,15 @@ public class PurchaseTest {
     Timestamp rightNow = new Timestamp(new Date().getTime());
     assertEquals(rightNow.getDay(), savedTime.getDay());
   }
+
+  @Test
+  public void all_returnsAllInstancesOfPurchase_true() {
+    Purchase firstPurchase = new Purchase(4, 1);
+    firstPurchase.save();
+    Purchase secondPurchase = new Purchase(2, 3);
+    secondPurchase.save();
+    assertEquals(true, Purchase.all().get(0).equals(firstPurchase));
+    assertEquals(true, Purchase.all().get(1).equals(secondPurchase));
+  }
+
 }
