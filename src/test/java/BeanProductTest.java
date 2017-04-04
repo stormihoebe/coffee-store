@@ -50,10 +50,22 @@ public class BeanProductTest {
     assertTrue(0 < testBeanProduct.getId());
   }
 
-  @Test public void save_successfullyAddBeanProductToDatabase_list() {
+  @Test
+  public void save_successfullyAddBeanProductToDatabase_list() {
     BeanProduct testBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
     testBeanProduct.save();
     assertTrue(BeanProduct.all().get(0).equals(testBeanProduct));
   }
+
+  @Test
+  public void all_returnsAllInstancesOfBeanProduct_true() {
+    BeanProduct firstBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
+    firstBeanProduct.save();
+    BeanProduct secondBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
+    secondBeanProduct.save();
+    assertEquals(true, BeanProduct.all().get(0).equals(firstBeanProduct));
+    assertEquals(true, BeanProduct.all().get(1).equals(secondBeanProduct));
+  }
+
 
 }
