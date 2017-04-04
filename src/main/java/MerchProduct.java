@@ -6,14 +6,14 @@ import java.util.Date;
 
 public class MerchProduct extends Product {
   public String brand;
-  public String model;
+  public String details;
   public static final String DATABASE_TYPE = "merch";
 
-  public MerchProduct(String name, float price, String brand, String model){
+  public MerchProduct(String name, float price, String brand, String details){
     this.name = name;
     this.price = price;
     this.brand = brand;
-    this.model = model;
+    this.details = details;
     type = DATABASE_TYPE;
   }
 
@@ -21,8 +21,8 @@ public class MerchProduct extends Product {
     return brand;
   }
 
-  public String getModel(){
-    return model;
+  public String getDetails(){
+    return details;
   }
 
   public static List<MerchProduct> all() {
