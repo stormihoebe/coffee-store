@@ -25,4 +25,9 @@ public class CustomerTest {
     Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
     assertEquals("Happy Jim", testCustomer.getName());
   }
+  @Test
+  public void getEmail_customerInstantiatesWithEmail_joyJim(){
+    Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
+    assertEquals("JoyJim@gmail.com", testCustomer.getEmail());
+  }
 }

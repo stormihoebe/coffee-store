@@ -39,22 +39,22 @@ public class Customer {
                this.getEmail().equals(newCustomer.getEmail());
       }
     }
-    public void save() {
-      try(Connection con = DB.sql2o.open()) {
-        String sql = "INSERT INTO customers (name, email) VALUES (:name, :email)";
-        this.id = (int) con.createQuery(sql, true)
-          .addParameter("name", this.name)
-          .addParameter("email", this.email)
-          .executeUpdate()
-          .getKey();
-      }
-    }
 
-    public static List<Customer> all() {
-      String sql = "SELECT id, name, email FROM customers";
-      try(Connection con = DB.sql2o.open()) {
-       return con.createQuery(sql).executeAndFetch(Customer.class);
-      }
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO customers (name, email) VALUES (:name, :email)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", this.name)
+        .addParameter("email", this.email)
+        .executeUpdate()
+        .getKey();
     }
+  }
 
+  public static List<Customer> all() {
+    String sql = "SELECT id, name, email FROM customers";
+    try(Connection con = DB.sql2o.open()) {
+     return con.createQuery(sql).executeAndFetch(Customer.class);
+    }
+  }
 }
