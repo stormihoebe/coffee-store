@@ -57,4 +57,9 @@ public class Customer {
      return con.createQuery(sql).executeAndFetch(Customer.class);
     }
   }
+
+  public void purchase(int product_id ){
+    Purchase newPurchase = new Purchase( this.getId(), product_id);
+    newPurchase.save();
+  }
 }
