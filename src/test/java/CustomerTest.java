@@ -19,4 +19,10 @@ public class CustomerTest {
     Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
     assertEquals(true, testCustomer instanceof Customer);
   }
+
+  @Test
+  public void getName_customerInstantiatesWithName_Jim(){
+    Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
+    assertEquals("Happy Jim", testCustomer.getName());
+  }
 }
