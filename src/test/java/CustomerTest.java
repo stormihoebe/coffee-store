@@ -33,8 +33,16 @@ public class CustomerTest {
 
   @Test
   public void equals_returnsTrueIfNameAndEmailAreSame_true() {
-    Customer testCustomer = new Customer("Henry", "henry@henry.com");
-    Customer anotherCustomer = new Customer("Henry", "henry@henry.com");
+    Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
+    Customer anotherCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
     assertTrue(testCustomer.equals(anotherCustomer));
   }
+
+  @Test
+  public void save_insertsObjectIntoDatabase_Customer() {
+    Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
+    testCustomer.save();
+    assertEquals(true, Customer.all().get(0).equals(testCustomer));
+  }
+
 }
