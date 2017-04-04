@@ -45,4 +45,19 @@ public class CustomerTest {
     assertEquals(true, Customer.all().get(0).equals(testCustomer));
   }
 
+  @Test
+  public void save_assignsIdToObject() {
+    Customer testCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");    testCustomer.save();
+    Customer savedCustomer = Customer.all().get(0);
+    assertEquals(testCustomer.getId(), savedCustomer.getId());
+}
+
+  @Test
+  public void all_returnsAllInstancesOfCustomer_true() {
+    Customer firstCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
+    firstCustomer.save();
+    Customer secondCustomer = new Customer("Happy Jim", "JoyJim@gmail.com");
+    secondCustomer.save();
+  }
+
 }
