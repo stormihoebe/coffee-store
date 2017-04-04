@@ -67,5 +67,14 @@ public class BeanProductTest {
     assertEquals(true, BeanProduct.all().get(1).equals(secondBeanProduct));
   }
 
+  @Test
+  public void find_returnsBeanProductWithSameId_secondBeanProduct() {
+    BeanProduct firstBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
+    firstBeanProduct.save();
+    BeanProduct secondBeanProduct = new BeanProduct("Spring Fling", 14, "Mexico", "City Roast");
+    secondBeanProduct.save();
+    assertEquals(BeanProduct.find(secondBeanProduct.getId()), secondBeanProduct);
+  }
+
 
 }
